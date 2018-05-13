@@ -9,6 +9,8 @@ RUN echo "proftpd-basic shared/proftpd/inetd_or_standalone select standalone" | 
 RUN apt-get install -y apache2 proftpd
 
 ADD proftpd.conf /etc/proftpd/proftpd.conf
+RUN mkdir /srv/ftp/pub
+ADD eicar.com /srv/ftp/pub/eicar.com
 
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT "/entrypoint.sh"
