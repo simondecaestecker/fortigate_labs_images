@@ -1,9 +1,9 @@
 # Based on gns3/ipterm-base and gns3/webterm images
-# Using Debian Stretch instead of Debian Jessie
+# Using Ubuntu Xenial instead of Debian Jessie
 
 # docker base image for basic networking tools and web browser
 
-FROM debian:stretch
+FROM ubuntu:xenial
 MAINTAINER Simon DECAESTECKER <contact@simondecaestecker.com>
 
 RUN set -ex \
@@ -42,7 +42,7 @@ RUN set -ex \
 # install web tools
 #
     && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-        firefox-esr lxterminal jwm menu leafpad apache2-utils \
+        firefox lxterminal jwm menu leafpad apache2-utils \
     && rm -rf /var/lib/apt/lists/* \
     && /bin/echo -e '\
 \x23!/bin/sh\n\
@@ -61,7 +61,7 @@ if [ $status -eq 139 -a $(($(date +%s)-start)) -le 10 ]; then\n\
 fi' \
         > /usr/local/bin/start-firefox && chmod +x /usr/local/bin/start-firefox \
     && /bin/echo -e '\
-?package(firefox-esr):\\\n\
+?package(firefox):\\\n\
  needs="x11"\\\n\
  section="Applications"\\\n\
  title="Mozilla Firefox"\\\n\
